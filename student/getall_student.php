@@ -12,7 +12,7 @@ $query = "SELECT * FROM `students` WHERE `code_student` =$codestudent";
 $data = mysqli_query($conn, $query);
 
 class Students{
-	function Students($id, $code_student, $name_stu, $thumbnail_stu, $birthday_stu, $major, $email_user,$id_class, $id_point){
+	function Students($id, $code_student, $name_stu, $thumbnail_stu, $birthday_stu, $major, $email_user){
 
         $this->id = $id;
         $this->codeStudent = $code_student;
@@ -20,11 +20,7 @@ class Students{
 		$this->thumbnailStudent = $thumbnail_stu;
 		$this->birthdayStudent = $birthday_stu;
 		$this->major = $major;
-		$this->emailUser = $email_user;
-		$this->idClass = $id_class;
-		$this->idPoint = $id_point;
-		
-
+		$this->emailUser = $email_user;	
 	}
 }
 
@@ -37,9 +33,7 @@ while ($row = mysqli_fetch_assoc($data)) {
 		,$row['thumbnail_stu']
 		,$row['birthday_stu']
 		,$row['major']
-        ,$row['email_user']
-        ,$row['id_class']
-		,$row['id_point']));
+        ,$row['email_user']));
 
 
 }
