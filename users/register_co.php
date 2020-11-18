@@ -2,11 +2,12 @@
 
 require "../connect.php";
 
-
+$name = $_POST['nameCompany'];
 $email = $_POST['emailCompany'];
 $phonenumber = $_POST['phoneCompany'];
 $password = md5($_POST['passwordCompany']);
-$type = "2";
+
+
 
 
 //check duplicate username
@@ -20,23 +21,30 @@ $result_email =  mysqli_query($conn, $query_email);
 if ($password == "" || $email == "" || $phonenumber ==""  ||$type="") {
 	$status = "Nhập thông tin đầy đủ!";
 }else{
-  
 	if (mysqli_num_rows($result_email) > 0) {
-		$status = "email already exist";
+		        $status['isSuccess'] = 0;
+				$status['message'] = "email đã tồn tại";
 	}else{
-		$query = "INSERT INTO `user`(`email`, `phonenumber`, `password`, `type`)  VALUES ( '$email', '$phonenumber','$password','$type');";
-		$selectuser ="SELECT*From user where email = '$email'";
-		
-		if (mysqli_query($conn, $query)) {
-			$status = "Register success!!!";
+		$queryuser = "INSERT INTO `user`(`email`, `phonenumber`, `password`, `type`)  VALUES ( '$email', '$phonenumber','$password','3');";
+		$querycompany = "INSERT INTO `company`(`name_company`, `email_user`) VALUES ('$name','$email')";
+		if (mysqli_query($conn, $queryuser)) {
+			if(mysqli_query($conn, $querycompany)){
+				$status['isSuccess'] = 1;
+				$status['emailCompany'] = $email;
+				$status['message'] = "Đăng kí thành công";
+			}else{
+				$status['isSuccess'] = 0;
+				$status['message'] = "Đăng kí không thành công";
+			}	
 		}else{
-			$status = "Register Faild";
+			$status['isSuccess'] = 0;
+				$status['message'] = "Đăng kí không thành công";
 		}
 	}
   
 }
 
-echo json_encode(array("response"=>$status));
+echo json_encode($status);
 
 
 

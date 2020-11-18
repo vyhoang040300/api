@@ -1,14 +1,11 @@
 <?php
 
 require "../connect.php";
-
-
 $email = $_POST['emailStudent'];
 $phonenumber = $_POST['phoneStudent'];
 $password = md5($_POST['passwordStudent']);
-$type = "1";
-
-
+$name = $_POST['nameStudent'];
+$major = $_POST['majorStudent'];
 //check duplicate username
 // $query = "SELECT * FROM `user` WHERE `username` = '$username'";
 // $result = mysqli_query($conn, $query);
@@ -19,22 +16,29 @@ $result_email =  mysqli_query($conn, $query_email);
 if ($password == "" || $email == "" || $phonenumber ==""  ||$type="") {
 	$status = "Nhập thông tin đầy đủ!";
 }else{
-  
 	if (mysqli_num_rows($result_email) > 0) {
-		$status = "email already exist";
+		$status = "Email đã tồn tại";
 	}else{
-		$query = "INSERT INTO `user`(`email`, `phonenumber`, `password`, `type`)  VALUES ( '$email', '$phonenumber','$password','$type');";
-		$selectuser ="SELECT*From user where email = '$email'";
-		
-		if (mysqli_query($conn, $query)) {
-			$status = "Register success!!!";
+		$queryuser = "INSERT INTO `user`(`email`, `phonenumber`, `password`, `type`)  VALUES ( '$email', '$phonenumber','$password','1');";
+		$querystudent = "INSERT INTO `students`(`name_stu`, `major`, `email_user`) VALUES ('$name','$major','$email')";
+		if (mysqli_query($conn, $queryuser)) {
+			if (mysqli_query($conn, $querystudent)){
+				$status['isSuccess'] = 1;
+				$status['emailStudent'] = $email;
+				$status['message'] = "Đăng kí thành công";
+			}
+			else{
+				$status['isSuccess'] = 0;
+				$status['message'] = "Đăng kí không thành công";
+			}
 		}else{
-			$status = "Register Faild";
+			$status['isSuccess'] = 0;
+				$status['message'] = "Đăng kí không thành công";
 		}
 	}
   
 }
-echo json_encode(array("response"=>$status));
+echo json_encode($status);
 
 
 
