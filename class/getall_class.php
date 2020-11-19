@@ -5,7 +5,8 @@ require "../connect.php";
 //   $result = mysqli_query($conn,$sql);
 //   $values = mysqli_fetch_assoc($result);
 //   $num_rows = $values['total'];
-   
+
+
 
 $query = "SELECT `id`, `code_class`, `name_class`, `decription_class`, `maxstudent_class`, `thumbnail_class`, `currentstudent_class` FROM `class` WHERE 1";
 
@@ -13,7 +14,6 @@ $data = mysqli_query($conn, $query);
 
 class Classs{
 	function Classs($id, $code_class, $name_class, $decription_class, $maxstudent_class, $thumbnail_class, $currentstudent_class){
-
 		$this->id = $id;
 		$this->codeClass = $code_class;
 		$this->nameClass = $name_class;
@@ -21,9 +21,6 @@ class Classs{
 		$this->maxStudentClass = $maxstudent_class;
 		$this->thumbnailClass = $thumbnail_class;
 		$this->currentStudentClass = $currentstudent_class;
-		
-		
-
 	}
 }
 

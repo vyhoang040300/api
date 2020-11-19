@@ -1,13 +1,13 @@
 <?php
   require "../connect.php";
 
-  $target_dir = "image/";
-  $hosting = "http://192.168.1.96/wri/";
+  $target_dir = "../images/class/";
+  $hosting = "http://192.168.1.113/wri/";
   $target_file = $target_dir. time() . "-" .basename($_FILES["image"]["name"]);
   $uploadOK = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   $check  = getimagesize($_FILES["image"]["tmp_name"]);
-  $thumbnailclass = $hosting.$target_file;
+  $thumbnailclass = $hosting."images/class/". time() . "-" .basename($_FILES["image"]["name"]);
   $codeClass = $_POST["codeClass"];
   $nameClass = $_POST["nameClass"];
   $maxstudentClass = $_POST["maxstudentClass"];
