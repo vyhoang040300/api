@@ -27,7 +27,8 @@ class Students{
 
 $arrayStudent = array();
 while ($row = mysqli_fetch_assoc($data)) {
-    array_push($arrayStudent, new Students($row['id']
+    array_push($arrayStudent, new Students(
+		 $row['id']
     	,$row['code_student']
 		,$row['name_stu']
 		,$row['thumbnail_stu']
