@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 19, 2020 lúc 03:45 AM
+-- Thời gian đã tạo: Th10 20, 2020 lúc 04:17 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.6
 
@@ -158,9 +158,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `code_stu`, `name_stu`, `thumbnail_stu`, `birthday_stu`, `major`, `email_user`) VALUES
-(7, 'wri001', 'Tuấn vỹ', NULL, NULL, 'IT', 'tuanvy@gmail.com'),
-(8, 'wri002', 'demo2', NULL, NULL, 'demo', 'demo2@gmail.com'),
-(9, 'wri003', 'demo1', NULL, NULL, 'ee', 'demo@gmail.com');
+(7, 'wri001', 'Tuấn vỹ', 'http://192.168.1.113/wri/images/class/1605705090-cropped-1546083921.jpg', '11/11/2000', 'IT', 'tuanvy@gmail.com'),
+(8, 'wri002', 'demo2', 'http://192.168.1.113/wri/images/class/1605705090-cropped-1546083921.jpg', NULL, 'demo', 'demo2@gmail.com'),
+(9, 'wri003', 'demo1', 'http://192.168.1.113/wri/images/class/1605705090-cropped-1546083921.jpg', NULL, 'ee', 'demo@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -180,8 +180,7 @@ CREATE TABLE `stu_class` (
 
 INSERT INTO `stu_class` (`id`, `id_stu`, `id_class`) VALUES
 (1, 7, 1),
-(2, 7, 2),
-(3, 8, 2);
+(2, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -215,7 +214,8 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`code_teacher`, `name_teacher`, `description_teacher`, `thumbnail_teacher`, `email_user`) VALUES
-('b1', 'b1', 'dad', 'http://192.168.1.96/wri/images/teacher/1605705925-cropped-783760542.jpg', 'gv1@gmail.com');
+('b1', 'b1', 'dad', 'http://192.168.1.96/wri/images/teacher/1605705925-cropped-783760542.jpg', 'gv1@gmail.com'),
+('NN1', 'N1', 'da', 'http://192.168.1.96/wri/images/teacher/1605779357-cropped691368189.jpg', 'NN1@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -257,6 +257,7 @@ INSERT INTO `user` (`email`, `phonenumber`, `password`, `type`, `is_online`) VAL
 ('demo2@gmail.com', '09876543', '4297f44b13955235245b249739', 1, 0),
 ('demo@gmail.com', '098765', '4297f44b13955235245b249739', 1, 0),
 ('gv1@gmail.com', '098765432', '4297f44b13955235245b2497399d7a93', 2, 0),
+('NN1@gmail.com', '08765432', '4297f44b13955235245b2497399d7a93', 2, 0),
 ('student@gmail.com', '0000909999', '123123', 1, 0),
 ('teacher@gmail.com', '098765431', '123123', 2, 0),
 ('tuanvy@gmail.com', '09202902', '4297f44b13955235245b249739', 1, 0);
