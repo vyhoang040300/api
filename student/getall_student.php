@@ -6,8 +6,8 @@ require "../connect.php";
 //   $values = mysqli_fetch_assoc($result);
 //   $num_rows = $values['total'];
 
-$codestudent = $_POST['']
-$query = "SELECT * FROM `students` WHERE `code_student` =$codestudent";
+$email_user = $_POST['']
+$query = "SELECT * FROM `students` WHERE `email_user` ='$email_user';
 
 $data = mysqli_query($conn, $query);
 

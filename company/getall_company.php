@@ -1,12 +1,12 @@
 <?php
 
 require "../connect.php";
-
+//
 $emailuser=$_POST['emailUser'];
 $query = "SELECT * FROM `company` WHERE `email_user`= '$emailuser' ";
-
+//
 $data = mysqli_query($conn, $query);
-
+//
 class Companys{
 	function Companys($id, $name_company, $thumbnail_company, $id_wishlist, $id_sample_email, $email_user, $id_packet){
 		$this->id = $id;
@@ -18,7 +18,7 @@ class Companys{
 		$this->idPacket = $id_packet;
 	}
 }
-
+//
 
 $arrayCompanys = array();
 while ($row = mysqli_fetch_assoc($data)) {

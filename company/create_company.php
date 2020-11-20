@@ -8,8 +8,7 @@
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   $check  = getimagesize($_FILES["image"]["tmp_name"]);
   $thumbnailclass = $hosting.$target_file;
-  //  
-  $id = $_POST['id'];
+  //
   $nameCompany = $_POST['name_company'];
   $thumbnailCompnay = $_POST['thumbnail_company'];
   $idWishLisht = $_POST['id_wishlist'];
@@ -17,14 +16,8 @@
   $emailUser = $_POST['email_user'];
   $idPacket = $_POST['id_packet'];
   //
-  $querry = "UPDATE `company` SET `id`=$id,
-            `name_company`= $nameCompany,
-            `thumbnail_company`= $thumbnailCompnay,
-            `id_wishlist`=$idWishLisht,
-            `id_sample_email`=$idSampleEmail,
-            `email_user`=$emailUser,
-            `id_packet`=$idPacket
-             WHERE `email_user` =$emailUser";
+  $querry = "INSERT INTO `company`(`name_company`, `thumbnail_company`, `id_wishlist`, `id_sample_email`, `email_user`, `id_packet`) 
+  VALUES ('$nameCompany', '$thumbnailCompnay', '$idWishLisht'. '$idSampleEmail', '$emailUser', '$idPacket')";
   //
   $response = array();
   $error = "";
@@ -48,19 +41,36 @@ if($uploadOK == 0){
 	if(move_uploaded_file($_FILES["image"]["tmp_name"],$target_file)){
      if (mysqli_query($conn, $querry)) {
          $response['status'] = 1;
-         $response['message'] = "Chỉnh sửa thành công";
-
+         $response['message'] = "Tạo lớp thành công";
+         $response['name_company'] = $nameCompany;
+         $response['thumbnail_company'] = $thumbnailCompnay;
+         $response['id_wishlist'] = $idWishLisht;
+         $response['id_sample_email'] = $idSampleEmail;
+         $response['email_user'] = $emailUser;
+         $response['id_packet'] = $idPacket;
       }else{
 		$response['status'] = 0;
-      $response['message'] = "Chỉnh sửa không thành công";
+        $response['message'] = "Tạo lớp không thành công";
+        $response['name_company'] = $nameCompany;
+        $response['thumbnail_company'] = $thumbnailCompnay;
+        $response['id_wishlist'] = $idWishLisht;
+        $response['id_sample_email'] = $idSampleEmail;
+        $response['email_user'] = $emailUser;
+        $response['id_packet'] = $idPacket;
+      }else{
       }
 
 	}else{
 		$response['status'] = 0;
-      $response['message'] = "Chỉnh sửa không thành công";
+        $response['message'] = "Tạo lớp không thành công";
+        $response['name_company'] = $nameCompany;
+        $response['thumbnail_company'] = $thumbnailCompnay;
+        $response['id_wishlist'] = $idWishLisht;
+        $response['id_sample_email'] = $idSampleEmail;
+        $response['email_user'] = $emailUser;
+        $response['id_packet'] = $idPacket;
+      }else{
 	}
 }
 echo json_encode($response);
-
-
 ?>
