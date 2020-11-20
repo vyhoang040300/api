@@ -9,8 +9,7 @@
   //add student as class
  
   //get code_stu => id_stu
-   $code_student = $_POST['codeStudent'];
-   $querycodeStudent = ""
+   
   
 
 

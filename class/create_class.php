@@ -37,30 +37,19 @@ if($uploadOK == 0){
      if (mysqli_query($conn, $querry)) {
          $response['status'] = 1;
          $response['message'] = "Tạo lớp thành công";
-         $response['codeClass'] = $codeClass;
-         $response['thumbnailclass'] = $thumbnailclass;
-         $response['nameClass'] = $nameClass;
-         $response['maxstudentClass'] = $maxstudentClass;
-         $response['decriptionClass'] = $decriptionClass;
+      
       }else{
 		$response['status'] = 0;
       $response['message'] = "Tạo lớp không thành công";
-      $response['codeClass'] = $codeClass;
-      $response['thumbnailclass'] = $thumbnailclass;
-      $response['nameClass'] = $nameClass;
-      $response['maxstudentClass'] = $maxstudentClass;
-      $response['decriptionClass'] = $decriptionClass;
+     
       }
 
 	}else{
 		$response['status'] = 0;
       $response['message'] = "Tạo lớp không thành công";
-      $response['codeClass'] = $codeClass;
-      $response['thumbnailclass'] = $thumbnailclass;
-      $response['nameClass'] = $nameClass;
-      $response['maxstudentClass'] = $maxstudentClass;
-      $response['decriptionClass'] = $decriptionClass;
+    
 	}
 }
 echo json_encode($response);
+
 ?>
