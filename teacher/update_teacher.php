@@ -1,21 +1,20 @@
 <?php
   require "../connect.php";
 
-  $target_dir = "../images/student/";
+  $target_dir = "../images/teacher/";
   $hosting = "http://192.168.1.113/wri/";
   $target_file = $target_dir. time() . "-" .basename($_FILES["image"]["name"]);
   $uploadOK = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   $check  = getimagesize($_FILES["image"]["tmp_name"]);
-  $thumbnailstudent = $hosting."images/class/". time() . "-" .basename($_FILES["image"]["name"]);
-  $emailUser = $_POST["emailUser"];
-  $codeStudent = $_POST["codeStudent"];
-  $nameStudent = $_POST["nameStudent"];
-  $birthdayStudent = $_POST["birthdayStudent"];
-  $major = $_POST["major"];
-  $phoneUser = $_POST["phoneUser"];
-  $querryupStu = "UPDATE `students` SET `code_stu`='$codeStudent',`name_stu`='$nameStudent',`thumbnail_stu`='$thumbnailstudent',`birthday_stu`='$birthdayStudent',`major`='$major' WHERE `email_user` = '$emailUser'";
-  $querryupUser = "UPDATE `user` SET `phonenumber`='$phoneUser' WHERE `email`= '$emailUser'";
+  $thumbnailTeacher = $hosting."images/teacher/". time() . "-" .basename($_FILES["image"]["name"]);
+  $emailTeacher = $_POST["emailTeacher"];
+  $codeTeacher = $_POST["codeTeacher"];
+  $nameTeacher = $_POST["nameTeacher"];
+  $phoneTeacher = $_POST["phoneTeacher"];
+  $decriptionTeacher = $_POST["decriptionTeacher"];
+  $querryupTeacher = "UPDATE `teacher` SET `code_teacher`='$codeTeacher',`name_teacher`='$nameTeacher',`description_teacher`='$decriptionTeacher',`thumbnail_teacher`='$thumbnailTeacher' WHERE `code_teacher`='$codeTeacher'";
+  $querryupUser = "UPDATE `user` SET `phonenumber`='$phoneTeacher' WHERE `email`= '$emailTeacher'";
   $response = array();
   $error = "";
   if($check != false){
@@ -36,24 +35,23 @@ if($uploadOK == 0){
 
 }else{
 	if(move_uploaded_file($_FILES["image"]["tmp_name"],$target_file)){
-     if (mysqli_query($conn, $querryupStu)) {
+     if (mysqli_query($conn, $querryupTeacher)) {
         if(mysqli_query($conn, $querryupUser)){
          $response['status'] = 1;
-         $response['message'] = "Sửa thông tin thành công";
+         $response['message'] = "Cập nhập thông tin thành công";
         }else{
          $response['status'] = 0;
-         $response['message'] = "Sửa thông tin không thành công";
-        
+         $response['message'] = "Cập nhập thông tin không thành công";
          }
          
       }else{
 		$response['status'] = 0;
-      $response['message'] = "Sửa thông tin không thành công";
+      $response['message'] = "Cập nhập thông tin không thành công";
       }
 
 	}else{
 		$response['status'] = 0;
-      $response['message'] = "Sửa thông tin không thành công";
+      $response['message'] = "Cập nhập thông tin không thành công";
     
 	}
 }
